@@ -1,10 +1,16 @@
 import React from 'react';
 
-class Todo extends React.Component {
+interface Props {
+  text: string;
+}
+
+class Todo extends React.Component<Props> {
+
   render() {
+    const { text } = this.props
     return (
       <div>
-        todo
+        { text }
       </div>
     );
   }

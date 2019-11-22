@@ -1,25 +1,46 @@
-import React from 'react';
+import React, { FormEvent }  from 'react';
 
-interface State {
-  input: any;
+interface Props {
+  onSubmit: (text: string) => void;
 }
 
-class Form extends React.Component<State> {
-  state: State = {
-    input: '',
-  };
+interface State {
+  todo: string;
+}
 
-  render() {
+class Form extends React.Component<Props,State> {
+
+  constructor(props:State) {
+    super(props);
+
+    this.state = {
+      todo: ""
+    };
+  }
+
+
+  public render() {
     return (
-      <form >
+      <form onSubmit={this.handleSubmit}>
         <input
           type="text"
-          value={this.state.input}
+          onChange={e => {
+            this.setState({
+              todo: e.target.value,
+            });
+          }}
+          value={this.state.todo}
         />
         <button>登録</button>
       </form>
     );
   }
+
+  private handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    this.props.onSubmit(this.state.todo);
+    this.setState({todo: ""});
+  };
 
 }
 
