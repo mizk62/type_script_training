@@ -1,7 +1,7 @@
 import React, { FormEvent }  from 'react';
 
 interface Props {
-  onSubmit: (text: string) => void;
+  onSubmit: any;
 }
 
 interface State {
@@ -10,7 +10,7 @@ interface State {
 
 class Form extends React.Component<Props,State> {
 
-  constructor(props:State) {
+  constructor(props:Props) {
     super(props);
 
     this.state = {
